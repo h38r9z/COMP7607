@@ -1,1 +1,54 @@
-# COMP7607
+java c
+Assignment   2
+COMP7607:   Natural Language   Processing
+Fall   2024
+Due:   November   29, 23:59   PMIn   our previous   assignment,   we   explored   the   capabilities   of   LLMs   in   two   domains:   math   reason-   ing   (Lu   et   al.,   2023)   and   code   generation      (Sun   et   al.,   2024).       In   this   assignment,   we   will   continue to   delve   into   how   prompting   affects   the   reasoning   abilities   of   LLMs.    Similarly,   you   can   choose   one   task—either mathematics or coding—based on your interests, or   you   can   do both.
+You are highly encouraged   to reuse   the implementation   from A1   to   complete   this   assignment:)Submit:      You   should   submit   your   assignment   to   the   COMP7607   Moodle   page.    You   will   need   to   submit (1) a PDF file UniversityNumber.pdf of your   report, with   detailed   experimental   details,   your   analysis and your thinking   (2) a zip file UniversityNumber.zip, which   includes:
+•      .py files, if   any.
+•      .ipynb files, if any.
+•   Other   files   (e.g., data, prompts) you   consider   necessary.
+Please note that the UniversityNumber is the number printed on your   student   card.
+1         IntroductionRecap.       Prompt engineering refers to methods for how to instruct LLMs for desired outcomes without   updating   model   weights.    In   Assignment   1,   we   designed   methods   for   prompting   LLMs   to   improve   accuracy in math problem-solving or code generation.   In this assignment, we will conduct an in-depth   exploration of prompt learning, focusing on how (1) prompt quality (2) the number of demonstrations   (3) prompt diversity (4) prompt complexity affect task performance.Note.       As   an   analytical   assignment,   you   can   approach   your   analysis   from   any   of   the   above   angles.   You   can   cover   a   wide   range   or   focus   deeply   on   one   aspect.    You   can   also   propose   new   perspectives.   Most importantly, we value your thinking and   insights   on   how   these   factors   affect   math   reasoning   or   code   generation.    Considering   the   API   response   rate,   you   can   take   a   task   subset   for   all   experiments   (but please specify this in your   report).
+2         In-Depth   Analysis   of   Prompting   Strategies   for   Math   and   CodingWe   will   analyze   the   impact   of   prompting   strategies   on   math   and   coding   tasks.    You   are   encouraged   to think creatively and freely design your   analytical methods   to   complete   the   assignment.   Feel   free   to   integrate your analysis with the implementations from A1, such   as   self-refine   (Madaan   et   al.,2023).
+2.1         Prompt   QualityIn   most   cases,   we   consider   the   given   problem   statement   and   demonstration   to   be   correct,   with   the   right   format,   rationale,   and   answers   aligned   with   the   problem   to   be   solved.         But   what   if   they   are   incorrect?   For   example,   if the problem   statement is   correct but   the   demonstration   is   wrong,   or   if   the   demonstration   is   correct but not   relevant   to   our problem,   how would   they   affect   the   performance   of   math reasoning or code generation?   Please try to analyze this based on previous A1 implementations.   If you have no ideas, you can refer   to   the   following papers:
+•   Towards   Understanding Chain-of-Thought Prompting: An Empirical Study of   What Matters (Wang   et   al.,   2023)
+•   What In-Context Learning “Learns” In-Context:   Disentangling Task Recognition and Task Learn-   ing   (Pan   et   al.,   2023)
+Hint:   You can try selecting some prompts used   in   A1   for   GSM8K   or   HumanEval,   “disturb”   them,   and then conduct your experiments.
+2.2         Prompt   ComplexityHow   does   the   complexity   of   prompts   affect   task   performance?    For   the   task   to be   solved,   is   it better   if   the   problem   statement   is   more   detailed   and   the   demonstration   more   complex?    Or   could   simpler   prompts sometimes yield better performance by reducing cognitive load on the model?
+•   Complexity-Based Prompting for Multi-Step Reasoning (Fu et   al.,2023)Hint: You can try curating more complex/simpler prompts for your task and then conduct compar-   ative experiments.   For convenience, you may find   some   from   prompt   libraries   like   Chain-of-Thought   Hub.
+2.3         Number   of   DemonstrationsGiven a fixed task statement, does the number   of   demonstrations   affect   task performance?   Obviously,   it   does, but how exactly does it   influence   the   performance?   Will   continuously   increasing   the   number   of demonstrations linearly enhance the LLM’s math reasoning and coding capabilities?   What happens   if   the   number   of   demonstrations   is   reduced?      Under   which   settings   is   performance   most   sensitive   to   changes   in   the number   of   demonstrations?   Try   to   analyze prompting   strategies   from   the perspective
+of the number of demonstrations.
+•   Language   Models   are   Few-Shot   Learners   (Brown   et   al.,2020)
+•   Rethinking   the   Role   of   Demonstrations:    What   Makes   In-Context   Learning   Work?   (Min   et   al.,   2022)
+Hint:   Researchers   noticed  代 写COMP7607: Natural Language Processing Fall 2024 Assignment 2Python
+代做程序编程语言 this   issue   as   early   as   the   release   of   GPT-3   in   2020.   If   you   are   interested,   you can review these classic works above before starting   your   experimental   design.
+2.4         Prompt   DiversityIs   it better   for   prompts   to be   more   diverse   or   more   standardized?    How   would   these   choices   impact   the LLM’s math and coding capabilities?   Try to analyze them from the perspectives like:   (1) Using dif-   ferent phrasing and sentence/code structures to guide LLMs, avoiding over-reliance   on fixed   formats.   (2) Providing varied task instructions or background information to help the model better understand   the task requirements.   (3) Using prompts with diverse styles and tones to improve   the model’s   adapt-   ability in different contexts.   You are also encouraged to identify more aspects that reflect diversity.   We   are looking forward to your insights!
+
+
+•   Diversity of thought improves reasoning abilities of large language   models   (Naik   et   al.,2023)
+•   PAL: Program-aided   Language   Models   (Gao   et   al.,2023)Hint:    Consider   how    different   levels   of   diversity   in   prompts   might   affect   the   LLM’s   reasoning   and   coding   ability.   You   may want   to   explore how varying   the prompts   can   lead   to   more   robust   and   generalized performance.
+2.5         Generalization   (Optional)Congratulations   on   completing   your   analysis   of   LLM   reasoning   and   coding   capabilities!    Until   now,   your experiments have likely focused on GSM8K and HumanEval, as in A1.   Would your methods and   analysis change when applied to   other   datasets?If   you   find   the   previous   tasks   not   challenging   enough,   you   can   choose   1-2   additional   datasets   from   the   lists below,   repeat   your   experiments,   and   report   your   observations.    See   if your   methods   or   conclusions generalize well to these new   datasets.•   Math:      e.g.,   MultiArith   (Roy   and   Roth,   2015),   AQuA   (Ling   et   al.,   2017),   GSM-Hard   (Gao   et   al.,
+2023), GSM-Plus   (Li   et   al.,   2024), a   list   available   at:   here   for   reference.
+•   Coding:   e.g.,   MBPP   (Austin   et   al.,   2021),   APPS   (Hendrycks   et   al.,   2021),   HumanEval-X   (Zheng   et   al.,   2023), a   list   available   at:   here   for   reference.
+3         Model   and   APISimilarly,   In   this   assignment,   you   may   use   Llama-3.1-8B-Instruct,   which   is   a   powerful   open-source   model that natively supports multilingual capabilities, coding, reasoning, and tool usage.   For more de-   tails about this model, you can refer to the Meta. Blog: https://ai.meta.com/blog/meta-llama-3-1/   and   https://www.llama.com/docs/model-cards-and-prompt-formats/llama3_1/   .You   may   interact   with   the   Llama-3.1-8B-Instruct   sponsored   by   SambaNova   System.    To   access   this resource, please refer to the instructions in the “SambaNova    Cloud    QuickStart    Guide.pdf” to register   and generate your API key.   To verify that your API key is functioning correctly, you can either use   the   provided curl command   in the document or run the “test_full_response.py” script.
+4         Report
+You will write a report including the following parts:
+•   The   description   of   your   implemented   analytical   methods,   including   the   experimental   settings,   the hyperparameters, etc.
+•   The   outcomes   and   discussion   of   your   analysis,   such   as   the   prompts   you   used,   the   carefully   designed demonstrations, and some appropriate statistics   and   studies.
+5          Gadgets
+The following resources might help you with this assignment:
+•   A repository containing Chain of Thought and related papers: Chain-of-ThoughtsPapers.
+•   A repository with a wealth of code generation work: Awesome-Code-Intelligence.
+
+
+6         Note
+There are some key points you   should pay   attention   to:
+•   Your   assignment   will   not   be   evaluated   solely   based   on   your   experimental   results   (e.g.,      task   accuracy).   As   an   analytical   assignment, we   are   more   interested   in   seeing   your   thought   process and creativity in experimental design and your   report.   We highly   recommend visualizing   your   experimental results.
+•   Considering   the   complexity   of task   design   and   the   richness   of existing research,   coding   will   be   more challenging to analyze than math reasoning.   Don’t worry; we   will   take   task   difficulty   into   account during grading.
+•   We   have   observed   that   some   students   in   A1   used   program-aided   language   models   (Gao   et   al.,   2023)   to   tackle   math   reasoning.    This   is   excellent!    You   can   try   cross-analyzing   LLM   reasoning   and coding.   Some relevant   literature is available   here for   reference.
+•   The   papers   listed   in   this   document   are   for   reference   purposes   only.      You   are   not   required   to   follow them for expansion or replication   of results.
+•      (Optional) Beyond Llama-3   .1-8B-Instruct, you can   explore   other   available   models   for   this   as-   signment.   Feel free to modify decoding parameters like temperature.
+   
+
+         
+加QQ：99515681  WX：codinghelp  Email: 99515681@qq.com
